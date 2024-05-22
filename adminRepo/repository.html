@@ -83,8 +83,6 @@
                 </div>
             </nav>
 
-
-
             <div class="box">
                 <div class="box-header" style="margin: 10px;">
                     <h3 class="box-title">Repository</h3>
@@ -96,23 +94,17 @@
                 </div>
             </div>
 
-
-
-
-
-        
-
-              
             <main class="content px-3 py-2">
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID Buku</th>
                             <th>Penulis</th>
-                            <th>judul</th>
+                            <th>Judul</th>
                             <th>Jurusan</th>
                             <th>Jenis Dokumen</th>
                             <th>Status</th>
+                            <th>Dokumen</th> <!-- Kolom baru untuk dokumen -->
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +115,7 @@
                             <td>Ilmu Komputer</td>
                             <td>Artikel</td>
                             <td><span class="badge1 badge-published">Delivered</span></td>
-                          
+                            <td><a href="path/to/file1.pdf" class="btn btn-primary btn-sm" target="_blank">View PDF</a></td> <!-- Button untuk PDF -->
                         </tr>
                         <tr>
                             <td><a href="#">RA5324</a></td>
@@ -132,7 +124,7 @@
                             <td>Sistem Informasi</td>
                             <td>Skripsi</td>
                             <td><span class="badge1 badge-review">Shipping</span></td>
-                           
+                            <td><a href="path/to/file2.pdf" class="btn btn-primary btn-sm" target="_blank">View PDF</a></td> <!-- Button untuk PDF -->
                         </tr>
                         <tr>
                             <td><a href="#">RA8568</a></td>
@@ -141,7 +133,7 @@
                             <td>Sistem Informasi</td>
                             <td>Jurnal</td>
                             <td><span class="badge1 badge-rejected">Pending</span></td>
-                            
+                            <td><a href="path/to/file3.pdf" class="btn btn-primary btn-sm" target="_blank">View PDF</a></td> <!-- Button untuk PDF -->
                         </tr>
                         <tr>
                             <td><a href="#">RA1453</a></td>
@@ -150,6 +142,7 @@
                             <td>Ilmu Komputer</td>
                             <td>Artikel</td>
                             <td><button type="button" class="badge1 badge-review" data-bs-toggle="modal" data-bs-target="modal-surat-pernyataan">Shipping</button></td>
+                            <td><a href="path/to/file4.pdf" class="btn btn-primary btn-sm" target="_blank">View PDF</a></td> <!-- Button untuk PDF -->
                         </tr>
                         <tr>
                             <td><a href="#">RA1998</a></td>
@@ -158,11 +151,11 @@
                             <td>Matematika</td>
                             <td>Artikel</td>
                             <td><button type="button" class="badge1 badge-review" data-bs-toggle="modal" data-bs-target="modal-surat-pernyataan">Shipping</button></td>
+                            <td><a href="path/to/file5.pdf" class="btn btn-primary btn-sm" target="_blank">View PDF</a></td> <!-- Button untuk PDF -->
                         </tr>
                     </tbody>
                 </table>
             </main>
-
 
             <div class="modal fade" id="modal-surat-pernyataan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -181,6 +174,7 @@
                   </div>
                 </div>
               </div>
+
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
@@ -224,7 +218,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
-    <script> 	
+    <script>     
         new DataTable('#example');
     </script>
 </body>
