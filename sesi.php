@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id_user'])) {
-    header('Location: penulis.html');
+if (!isset($_SESSION['submit'])) {
+    header('Location: penulis.php');
     exit();
 
 } else if ($useradmin) {
     if (!isset($_SESSION['id_admin'])) {
-        header('Location: adminrepo/index.html');
+        header('Location: adminRepo/index.php');
         exit();
     }
 }

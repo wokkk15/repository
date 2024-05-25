@@ -20,6 +20,16 @@
 </head>
 <body>
 
+    <?php 
+	session_start();
+ 
+	// cek apakah yang mengakses halaman ini sudah login
+	if($_SESSION['level']==""){
+		header("location: login.php?pesan=gagal");
+	}
+ 
+	?>
+
     <div class="fcontainer">
         <nav class="warping">
             <div class="brand">
@@ -61,7 +71,7 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='form.html'" style="margin-bottom: 30px; margin-top: 40px;">
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='form.html'" style="margin-bottom: 10px; margin-top: 40px;">
                     <i class="fa-solid fa-pen-to-square"></i> Tambah Publikasi
                 </button>
             </div>

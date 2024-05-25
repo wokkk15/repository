@@ -1,52 +1,54 @@
 <?php
-include "sesi.php";
+// mengaktifkan session pada php
+session_start();
 
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "adminrepoith";
+// menghubungkan php dengan koneksi database
+include 'koneksi.php';
 
-$conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// menangkap data yang dikirim dari form login
+$username = $_POST['username'];
+$password = md5($_POST['password']);
+
+// menyeleksi data user dengan username dan password yang sesuai
+$login = mysqli_query($koneksi,"SELECT * FROM login where username='$username' and password='$password'");
+
+// cek apakah ada kesalahan pada query
+if(!$login){
+    die("Query gagal dijalankan: ". mysqli_error($koneksi));
 }
 
-$user = $_POST['user'];
-$password = $_POST['password'];
+// menghitung jumlah data yang ditemukan
+$cek = mysqli_num_rows($login);
 
-$result = $conn->query("SELECT * FROM login WHERE user='$user' AND password='$password'");
-if ($result->num_rows == 0) {
-    $check_user = $conn->query("SELECT * FROM login WHERE user='$user'");
-    if ($check_user->num_rows == 0) {
-        echo "Akun Tidak Terdaftar";
-    } else {
-        echo "Password Tidak Cocok";
-    }
-} else {
-    // Mulai sesi
-    session_start();
+// cek apakah username dan password di temukan pada database
+if($cek > 0){
 
-    while ($row = $result->fetch_assoc()) {
-        // Mengatur variabel sesi
-        $_SESSION['nama'] = $row['nama'];
-        $_SESSION['user'] = $row['user'];
+    $data = mysqli_fetch_assoc($login);
 
-        // Tentukan tipe pengguna
-        $user_type = $row['user_type'];
+    // cek jika user login sebagai admin
+    if($data['level']=="admin"){
 
-        // Arahkan pengguna sesuai tipe
-        if ($user_type == 'admin') {
-            $_SESSION['id_admin'] = $row['id'];
-            header('Location: adminrepo/index.html');
-            exit;
-        } elseif ($user_type == 'user') {
-            $_SESSION['id_user'] = $row['id'];
-            header('Location: penulis.html');
-            exit;
-        }
-    }
+        // buat session login dan username
+        $_SESSION['username'] = $username;
+        $_SESSION['level'] = "admin";
+
+        // alihkan ke halaman dashboard admin
+        header("location:adminRepo/index.php");
+
+    // cek jika user login sebagai pegawai
+    }else if($data['level']=="user"){
+        // buat session login dan username
+        $_SESSION['username'] = $username;
+        $_SESSION['level'] = "user";
+
+        // alihkan ke halaman dashboard pegawai
+        header("location: penulis.php");
+    }else{
+
+        // alihkan ke halaman login kembali
+        header("location:login.php?pesan=gagal");
+    }	
+}else{
+	header("location:login.php?pesan=gagal");
 }
-
-$conn->close();
-exit;
 ?>
