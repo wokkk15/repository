@@ -2,12 +2,12 @@
 session_start();
 
 if (!isset($_SESSION['id_user'])) {
-    header('Location: penulis.php');
+    header('Location: penulis.html');
     exit();
-    
+
 } else if ($useradmin) {
     if (!isset($_SESSION['id_admin'])) {
-        header('Location: adminRepo/index.html');
+        header('Location: adminrepo/index.html');
         exit();
     }
 }

@@ -31,13 +31,18 @@ if ($result->num_rows == 0) {
         $_SESSION['nama'] = $row['nama'];
         $_SESSION['user'] = $row['user'];
 
-        // Periksa jenis pengguna
-        if ($row['user_type'] == 'penulis') {
-            $_SESSION['id_user'] = $row['id'];
-            header('Location: penulis.php');
-        } else if ($row['user_type'] == 'admin') {
+        // Tentukan tipe pengguna
+        $user_type = $row['user_type'];
+
+        // Arahkan pengguna sesuai tipe
+        if ($user_type == 'admin') {
             $_SESSION['id_admin'] = $row['id'];
-            header('Location: adminRepo/index.html');
+            header('Location: adminrepo/index.html');
+            exit;
+        } elseif ($user_type == 'user') {
+            $_SESSION['id_user'] = $row['id'];
+            header('Location: penulis.html');
+            exit;
         }
     }
 }
