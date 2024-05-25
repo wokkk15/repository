@@ -1,3 +1,7 @@
+<?php
+    include "sesi.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

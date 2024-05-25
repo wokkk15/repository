@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "sesi.php";
 
 $host = "localhost";
 $dbusername = "root";
@@ -14,13 +14,14 @@ if ($conn->connect_error) {
 $user = $_POST['user'];
 $password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT * FROM login WHERE user=? AND password=?");
-$stmt->bind_param("ss", $user, $password);
-$stmt->execute();
-$result = $stmt->get_result();
-
+$result = $conn->query("SELECT * FROM login WHERE user='$user' AND password='$password'");
 if ($result->num_rows == 0) {
-    echo "Akun Tidak Terdaftar atau Password Salah";
+    $check_user = $conn->query("SELECT * FROM login WHERE user='$user'");
+    if ($check_user->num_rows == 0) {
+        echo "Akun Tidak Terdaftar";
+    } else {
+        echo "Password Tidak Cocok";
+    }
 } else {
     // Mulai sesi
     session_start();
