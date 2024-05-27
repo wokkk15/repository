@@ -46,9 +46,9 @@ if($cek > 0){
     }else{
 
         // alihkan ke halaman login kembali
-        header("location:login.php?pesan=gagal");
+        header("location:login.html");
     }	
 }else{
-	header("location:login.php?pesan=gagal");
+	header("location:login.html");
 }
 ?>

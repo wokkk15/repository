@@ -38,7 +38,7 @@
             </div>
 
             <ul class="navigation">
-                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="login.html" class="active">Logout</a></li>
             </ul>
         </nav>
     </div>
