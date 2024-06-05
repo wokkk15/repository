@@ -1,7 +1,8 @@
 <div class="container-fluid">
-    <button class="btn btn-primary m-3"><i class="fas fa-plus fa-sm"></i>
-        Tambah
-    </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Tambah
+</button>
+
 
     <main class="content px-3 py-2">
         <table id="example" class="table table-striped" style="width:100%">
@@ -33,15 +34,18 @@
         </table>
     </main>
 
-    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Form Repository</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="mb-3">
+                    <label for="inputAuthors" class="form-label">Authors</label>
+                    <input type="text" class="form-control" id="inputAuthors" placeholder="Please enter author name as 'last name, first name' (e.g. 'Mark, Lee')">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
