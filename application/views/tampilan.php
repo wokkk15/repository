@@ -19,7 +19,7 @@
       <nav class="warping">
           <div class="brand">
               <img src="<?php echo base_url() ?>assets/logo.jpeg" alt="my-logo">
-              <div class="logoname">Repository ITH</div>
+                <a href="<?php echo base_url('tampilan')?>" class="logoname" style="text-decoration:none; color:#000;">Repository ITH</a>
           </div>
 
           <div class="search">
@@ -44,15 +44,9 @@
               </div>
             </div>
           </div>
-          <ul class="na navbar-nav navbar-right">
-
-            <?php if ($this->session->userdata('username')) { ?>
-              <li>Selamat Datang <?php echo $this->session->userdata('username') ?></li>
-              <li class="active ml-2"><?php echo anchor('auth/logout', 'Logout'); ?></li>
-            <?php } else { ?>
-              <li class="active ml-2"><?php echo anchor('auth/login', 'Login'); ?></li>
-            <?php } ?>
-          </ul>
+          <ul class="navigation">
+            <li><a href="<?php echo base_url('login')?>" class="active">Login</a></li>
+        </ul>
       </nav>
   </div>
 
@@ -66,88 +60,52 @@
         <div class="form-group-type" style="margin-bottom: 20px;">
           <h5>Jenis</h5>
         </div>
-        <div class="form-group">
-          <input type="checkbox" id="tesis-type">
-          <label for="tesis-type">
-            <span class="checkbox">
-              <span class="check"></span>
-            </span>
-            Tesis
-          </label>
-        </div>
-        <div class="form-group">
-          <input type="checkbox" id="jurnal-type">
-          <label for="jurnal-type">
-            <span class="checkbox">
-              <span class="check"></span>
-            </span>
-            Jurnal
-          </label>
-        </div>
+        <?php foreach($jenis_dokumen as $jns) : ?>
         <div class="form-group">
           <input type="checkbox" id="skripsi-type">
           <label for="skripsi-type">
             <span class="checkbox">
               <span class="check"></span>
             </span>
-            Skripsi
+            <?php echo $jns->nama_dokumen ?>
           </label>
         </div>
+        <?php endforeach; ?>
+
         <div class="divider"></div>
 
         <div class="form-group-type" style="margin-bottom: 20px;">
           <h5>Subjek</h5>
         </div>
-        <div class="form-group">
-          <input type="checkbox" id="ai">
-          <label for="ai">
-            <span class="checkbox">
-              <span class="check"></span>
-            </span>
-            AI (Artificial Intelligence)
-          </label>
-        </div>
-        <div class="form-group">
-          <input type="checkbox" id="iot">
-          <label for="iot">
-            <span class="checkbox">
-              <span class="check"></span>
-            </span>
-            IOT (Internet of Things)
-          </label>
-        </div>
+        <?php foreach ($subjek as $sbk) : ?>
         <div class="form-group">
           <input type="checkbox" id="mechine-learning">
           <label for="mechine-learning">
             <span class="checkbox">
               <span class="check"></span>
             </span>
-            Machine learning
+            <?php echo $sbk->nama_subjek ?>
           </label>
         </div>
+        <?php endforeach; ?>
+
         <div class="divider"></div>
 
         <div class="form-group-study" style="margin-bottom: 20px;">
           <h5>Program studi :</h5>
         </div>
+        <?php foreach ($prodi as $pro) : ?>
+
         <div class="form-group">
           <input type="checkbox" id="ilkom">
           <label for="ilkom">
             <span class="checkbox">
               <span class="check"></span>
             </span>
-            Jurusan TPI
+            <?php echo $pro->nama_prodi ?>
           </label>
         </div>
-        <div class="form-group">
-          <input type="checkbox" id="Jurusan-Sains">
-          <label for="Jurusan-Sains">
-            <span class="checkbox">
-              <span class="check"></span>
-            </span>
-            Jurusan Sains
-          </label>
-        </div>
+        <?php endforeach; ?>
       </div>
 
       <div class="col-lg-9 mb-3">
@@ -169,9 +127,8 @@
                   <strong class="fw-normal"></strong>
                   <p class="mb-2"></p>
                   <strong class="fw-normal">Abstrak:</strong>
-                  <p class="mb-2"></p>
-                  <p><?php echo $tbl->abstrak ?></p>
-                  
+                  <p class="mb-2"></p>  
+                  <p><?php echo $tbl->abstrak?></p>
                   <p class="mb-2"></p>
                   <strong class="fw-normal">Keyword(s):</strong>
                   <p><i><?php echo $tbl->keyword ?></i></p>

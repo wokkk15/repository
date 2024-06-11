@@ -27,7 +27,7 @@
             </div>
 
             <ul class="navigation">
-                <li><a href="login.html" class="active">Logout</a></li>
+                <li><a href="<?php echo base_url('login')?>" class="active">Logout</a></li>
             </ul>
         </nav>
     </div>

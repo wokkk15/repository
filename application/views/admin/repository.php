@@ -1,10 +1,15 @@
 <div class="container-fluid">
-<button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Tambah
-</button>
+    <div class="box-header" style="margin: 10px;">
+        <h3 class="box-title">Repository</h3>
+        <div">
+            <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus fa-sm"></i>
+                Tambah
+            </button>
+        </div>
+    </div>
 
     <main class="content px-3 py-2">
-        <table id="example" class="table table-striped" style="width:100%">
+        <table id="tabel" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
                     <th>nomor</th>
@@ -18,7 +23,7 @@
             </thead>
             <?php 
             $no=1;
-            foreach($tabel as $tbl) ;?>
+            foreach($tabel as $tbl) : ?>
             <tbody>
                 <tr>
                     <td><?php echo $no++ ?></td>
@@ -30,6 +35,7 @@
                     <!-- <td><?php echo $tbl->dokumen ?></td> -->
                 </tr>
             </tbody>
+            <?php endforeach; ?>
         </table>
     </main>
 

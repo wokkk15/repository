@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="box-header" style="margin: 10px;">
-        <h3 class="box-title">Repository</h3>
+        <h3 class="box-title">Penulis</h3>
         <div class="pull-right">
-            <button class="btn btn-primary m-3"><i class="fas fa-plus fa-sm"></i>
+            <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-plus fa-sm"></i>
                 Tambah
             </button>
         </div>
@@ -34,17 +34,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">FORM INPUT PENULIS</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
+                <form action="<?php echo base_url(). 'admin/prodi_admin/tambah_aksi';?>" method="post">
+                    <div class="form-group">
+                        <label>Nama Penulis</label>
+                        <input type="text" name="nama_prodi" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
-        </div>
+    </div>
 </div>
