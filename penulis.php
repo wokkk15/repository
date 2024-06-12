@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>penulis</title>
+    <title>Penulis</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -65,7 +65,7 @@
                             </thead>
                             <tbody>
                                 <tr >
-                                    <th >Zayn J Malik, Giantara A.</th>
+                                    <th >Giantara A.</th>
                                     <td>My Universe</td>
                                     <td><a href="#" class="btn btn-success">Published</a></td>
                                 </tr>
@@ -81,6 +81,10 @@
                                     <td>Internet of Things</td>
                                     <td><a href="#" class="btn btn-warning">Review</a></td>
                                 </tr>
+				    <th>Ryu Sunjae, Alicia Narunika</th>
+				    <td>Data Analyst</td>
+				    <td><a href="#" class="btn btn-success">Published</a></td>
+				</tr>
     
                                 <tr>
                                     <th>Zayn J Malik, Ijoscripts</th>
@@ -95,7 +99,7 @@
                                 </tr>
     
                                 <tr>
-                                    <th>Zayn J Malik,Ahmad Rusadi Arrahimi, Veri Julianto, Oky Rahmanto</th>
+                                    <th>Zayn J Malik, Ahmad Rusadi Arrahimi, Veri Julianto, Oky Rahmanto</th>
                                     <td>MACHINE LEARNING TO DETECT PALM OIL DISEASES BASED ON LEAF EXTRACTION FEATURES AND PRINCIPAL COMPONENT ANALYSIS (PCA)</td>
                                     <td><a href="#" class="btn btn-success">Published</a></td>
                                 </tr>
