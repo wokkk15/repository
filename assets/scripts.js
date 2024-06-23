@@ -53,7 +53,7 @@ function populaterYears() {
 
 function checkFullText() {
     console.log("full text");
-    window.href="detail.html";
+    window.href="detail.php";
 }
 
 populaterYears();
@@ -61,3 +61,4 @@ populaterYears();
 yearSelect.onchange = function() {
     
 }
+

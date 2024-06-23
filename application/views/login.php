@@ -15,7 +15,7 @@
       <nav class="warping">
           <div class="brand">
           <img src="<?php echo base_url() ?>assets/logo.jpeg" alt="my-logo">
-              <div class="logoname">Repository ITH</div>
+          <a href="<?php echo base_url('tampilan')?>" class="logoname" style="text-decoration:none; color:#000;">Repository ITH</a>
           </div>
 
           <div class="search">
@@ -42,8 +42,8 @@
           </div>
 
           <ul class="navigation">
-              <li><a href="login.html" class="active">Login</a></li>
-          </ul>
+            <li><a href="<?php echo base_url('login')?>" class="active">Login</a></li>
+        </ul>
       </nav>
   </div>
 

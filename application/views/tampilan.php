@@ -10,6 +10,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/styles.css">
+  <style>
+    .abstrak {
+      max-height: 100px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .abstrak.expanded {
+      max-height: none;
+    }
+
+    .read-more {
+      text-decoration: none;
+      display: block;
+      text-align: right;
+      cursor: pointer;
+      color: #000;
+      margin-top: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,7 +37,7 @@
     <nav class="warping">
       <div class="brand">
         <img src="<?php echo base_url() ?>assets/logo.jpeg" alt="my-logo">
-        <div class="logoname">Repository ITH</div>
+        <a href="<?php echo base_url('tampilan') ?>" class="logoname" style="text-decoration:none; color:#000;">Repository ITH</a>
       </div>
 
       <div class="search">
@@ -42,14 +62,8 @@
           </div>
         </div>
       </div>
-      <ul class="na navbar-nav navbar-right">
-
-        <?php if ($this->session->userdata('username')) { ?>
-          <li>Selamat Datang <?php echo $this->session->userdata('username') ?></li>
-          <li class="active ml-2"><?php echo anchor('auth/logout', 'Logout'); ?></li>
-        <?php } else { ?>
-          <li class="active ml-2"><?php echo anchor('auth/login', 'Login'); ?></li>
-        <?php } ?>
+      <ul class="navigation">
+        <li><a href="<?php echo base_url('login') ?>" class="active">Login</a></li>
       </ul>
     </nav>
   </div>
@@ -66,122 +80,97 @@
       <div class="form-group-type" style="margin-bottom: 20px;">
         <h5>Jenis</h5>
       </div>
-      <div class="form-group">
-        <input type="checkbox" id="tesis-type">
-        <label for="tesis-type">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Tesis
-        </label>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" id="jurnal-type">
-        <label for="jurnal-type">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Jurnal
-        </label>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" id="skripsi-type">
-        <label for="skripsi-type">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Skripsi
-        </label>
-      </div>
+      <?php foreach ($jenis_dokumen as $jns) : ?>
+        <div class="form-group">
+          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" value="<?= $jns->id_dokumen ?>" />
+          <label for="id-<?= $jns->id_dokumen ?>">
+            <span class="checkbox">
+              <span class="check"></span>
+            </span>
+            <?php echo $jns->nama_dokumen ?>
+          </label>
+        </div>
+      <?php endforeach; ?>
+
       <div class="divider"></div>
 
       <div class="form-group-type" style="margin-bottom: 20px;">
         <h5>Subjek</h5>
       </div>
-      <div class="form-group">
-        <input type="checkbox" id="ai">
-        <label for="ai">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          AI (Artificial Intelligence)
-        </label>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" id="iot">
-        <label for="iot">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          IOT (Internet of Things)
-        </label>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" id="mechine-learning">
-        <label for="mechine-learning">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Machine learning
-        </label>
-      </div>
+      <?php foreach ($subjek as $sbk) : ?>
+        <div class="form-group">
+          <input type="checkbox" id="id-<?= $sbk->id_subjek ?>" name="subjek" value="<?= $sbk->id_subjek ?>" />
+          <label for="id-<?= $sbk->id_subjek ?>">
+            <span class="checkbox">
+              <span class="check"></span>
+            </span>
+            <?php echo $sbk->nama_subjek ?>
+          </label>
+        </div>
+      <?php endforeach; ?>
+
       <div class="divider"></div>
 
       <div class="form-group-study" style="margin-bottom: 20px;">
         <h5>Program studi :</h5>
       </div>
-      <div class="form-group">
-        <input type="checkbox" id="ilkom">
-        <label for="ilkom">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Jurusan TPI
-        </label>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" id="Jurusan-Sains">
-        <label for="Jurusan-Sains">
-          <span class="checkbox">
-            <span class="check"></span>
-          </span>
-          Jurusan Sains
-        </label>
-      </div>
+      <?php foreach ($prodi as $pro) : ?>
+        <div class="form-group">
+          <input type="checkbox" id="id-<?= $pro->id_prodi ?>" name="prodi" value="<?= $pro->id_prodi ?>" />
+          <label for="id-<?= $pro->id_prodi ?>">
+            <span class="checkbox">
+              <span class="check"></span>
+            </span>
+            <?php echo $pro->nama_prodi ?>
+          </label>
+        </div>
+      <?php endforeach; ?>
     </div>
 
     <div class="col-lg-9 mb-3">
-
       <?php foreach ($tabel as $tbl) : ?>
-
         <div class="row2 form-container">
-          <div class="d-flex">
+          <div class="d-flex justify-content-between">
             <div>
-              <div class="judul" onclick="checkFullText()"><?php echo $tbl->judul ?><br></div>
-              <div class="divider"></div>
-              <div class="write"><?php echo $tbl->penulis ?></div>
-              <div class="write"><?php echo $tbl->jurusan ?></div>
-
+              <div class="judul">
+                <div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/' . $tbl->id) ?>" class="judul""><?php echo $tbl->judul; ?></a><br></div>
+              </div>
+              <div class=" divider"></div>
+                <div class="write"><?php echo $tbl->penulis; ?></div>
+                <div class="write"><?php echo $tbl->jurusan; ?></div>
+              </div>
+              <div class="tag tag-kuning"><?php echo $tbl->jenis; ?></div>
             </div>
-            <div class="tag tag-kuning"><?php echo $tbl->jenis ?></div>
+            <div class="abstrak" id="abstrak-<?php echo $tbl->id; ?>">
+              <strong class="fw-normal"></strong>
+              <p class="mb-2"></p>
+              <strong class="fw-normal">Abstrak:</strong>
+              <p class="mb-2"></p>
+              <p><?php echo $tbl->abstrak; ?></p>
+              <p class="mb-2"></p>
+              <strong class="fw-normal">Keyword(s):</strong>
+              <p><i><?php echo $tbl->keyword; ?></i></p>
+            </div>
+            <a class="read-more" data-id="<?php echo $tbl->id; ?>" onclick="toggleReadMore(<?php echo $tbl->id; ?>)">Read More</a>
           </div>
-          <div class="abstrak">
-            <strong class="fw-normal"></strong>
-            <p class="mb-2"></p>
-            <strong class="fw-normal">Abstrak:</strong>
-            <p class="mb-2"></p>
-            <p><?php echo $tbl->abstrak ?></p>
-            <p class="mb-2"></p>
-            <strong class="fw-normal">Keyword(s):</strong>
-            <p><i><?php echo $tbl->keyword ?></i></p>
-          </div>
+        <?php endforeach; ?>
         </div>
-
-      <?php endforeach; ?>
     </div>
   </div>
+  <script>
+    function toggleReadMore(id) {
+      var abstrak = document.getElementById('abstrak-' + id);
+      var readMoreLink = abstrak.nextElementSibling;
 
-  </div>
+      if (abstrak.classList.contains('expanded')) {
+        abstrak.classList.remove('expanded');
+        readMoreLink.innerHTML = 'Read More';
+      } else {
+        abstrak.classList.add('expanded');
+        readMoreLink.innerHTML = 'Read Less';
+      }
+    }
+  </script>
   <script src="<?php echo base_url() ?>assets/scripts.js"></script>
 </body>
 
