@@ -21,6 +21,6 @@ class Model_subjek extends CI_model
 
     public function hapus_data($where,$table){
         $this->db->where($where);
-        $this->db->delete($table);
+        $this->db->delete ($table);
     }
 }

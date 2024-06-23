@@ -13,20 +13,23 @@
                 <tr>
                     <th>NO</th>
                     <th>Nama Penulis</th>
-                    <th colspan="3">Aksi</th>
+                    <th>Judul</th>
+                    <th colspan="2">Aksi</th>
                 </tr>
             </thead>
             <?php 
             $no=1;
-            foreach($tabel as $tbl) ;?>
+            foreach($tabel as $tbl) : ?>
             <tbody>
                 <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $tbl->penulis ?></td>
+                    <td><?php echo $tbl->judul ?></td>
                     <td><div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div></td>
                     <td><div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div></td>
                 </tr>
             </tbody>
+            <?php endforeach ?>
         </table>
     </main>
 

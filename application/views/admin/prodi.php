@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="box-header" style="margin: 10px;">
+    <div class="box-header d-flex justify-content-between" style="margin: 10px;">
         <h3 class="box-title">Prodi</h3>
         <div>
             <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-plus fa-sm"></i>
@@ -23,8 +23,8 @@
                 <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $pro->nama_prodi ?></td>
-                    <td><div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div></td>
-                    <td><div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div></td>
+                    <td><?php echo anchor('admin/prodi_admin/edit/' .$pro->id_prodi, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div>')?></td>
+                    <td><?php echo anchor('admin/prodi_admin/hapus/' .$pro->id_prodi, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div>')?></td>
                 </tr>
             </tbody>
             <?php endforeach; ?>

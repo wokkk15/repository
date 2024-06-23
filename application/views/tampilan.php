@@ -62,8 +62,8 @@
         </div>
         <?php foreach($jenis_dokumen as $jns) : ?>
         <div class="form-group">
-          <input type="checkbox" id="skripsi-type">
-          <label for="skripsi-type">
+          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" value="<?= $jns->id_dokumen ?>" />
+          <label for="id-<?= $jns->id_dokumen ?>">
             <span class="checkbox">
               <span class="check"></span>
             </span>
@@ -79,8 +79,8 @@
         </div>
         <?php foreach ($subjek as $sbk) : ?>
         <div class="form-group">
-          <input type="checkbox" id="mechine-learning">
-          <label for="mechine-learning">
+          <input type="checkbox" id="id-<?= $sbk->id_subjek ?>" name="subjek" value="<?= $sbk->id_subjek ?>" />
+          <label for="id-<?= $sbk->id_subjek ?>">
             <span class="checkbox">
               <span class="check"></span>
             </span>
@@ -95,10 +95,9 @@
           <h5>Program studi :</h5>
         </div>
         <?php foreach ($prodi as $pro) : ?>
-
         <div class="form-group">
-          <input type="checkbox" id="ilkom">
-          <label for="ilkom">
+          <input type="checkbox" id="id-<?= $pro->id_prodi ?>" name="prodi" value="<?= $pro->id_prodi ?>" />
+          <label for="id-<?= $pro->id_prodi ?>">
             <span class="checkbox">
               <span class="check"></span>
             </span>
@@ -113,7 +112,7 @@
           <?php foreach ($tabel as $tbl) : ?>
         
             <div class="row2 form-container">
-              <div class="d-flex">
+              <div class="d-flex justify-content-between">
                   <div>
                   <div class="judul" onclick="checkFullText()"><?php echo $tbl->judul ?><br></div>
                   <div class="divider"></div>
@@ -136,7 +135,7 @@
             </div>
     
         <?php endforeach; ?>
-    </div>
+      </div>
       </div>
 
     </div> 

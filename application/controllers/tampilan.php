@@ -19,5 +19,4 @@ class Tampilan extends CI_Controller {
         $data['tabel'] = $this->model_table->tampil_data()->result();
         $this->load->view('tampilan', $data);
     }
-
 }

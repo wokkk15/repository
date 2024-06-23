@@ -23,9 +23,9 @@
                 <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $sbk->nama_subjek ?></td>
-                    <td><?php echo anchor('admin/subjek_admin/edit/' .$sbk->id, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div>') ?></td>
-                    <td><?php echo anchor('admin/subjek_admin/hapus/' .$sbk->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div>') ?></td>
-                </tr>
+                    <td><?php echo anchor('admin/subjek_admin/edit/' .$sbk->id_subjek, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div>') ?></td>
+                    <td><?php echo anchor('admin/subjek_admin/hapus/' .$sbk->id_subjek, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div>') ?></td>
+                </tr> 
             </tbody>
             <?php endforeach; ?>
         </table>

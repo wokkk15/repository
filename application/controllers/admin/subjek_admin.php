@@ -24,7 +24,7 @@ class Subjek_admin extends CI_Controller{
 
     public function edit($id)
     {
-        $where = array('id' =>$id);
+        $where = array('id_subjek' =>$id);
         $data['subjek'] = $this->model_subjek->edit_subjek($where, 'subjek')->result();
         $this->load->view('template_admin/header');
         $this->load->view('template_admin/sidebar');
@@ -33,7 +33,7 @@ class Subjek_admin extends CI_Controller{
     }
 
     public function update(){
-        $id     = $this->input->post('id');
+        $id     = $this->input->post('id_subjek');
         $nama_subjek     = $this->input->post('nama_subjek');
 
         $data = array(
@@ -41,7 +41,7 @@ class Subjek_admin extends CI_Controller{
         );
 
         $where = array(
-            'id'    => $id
+            'id_subjek'    => $id
         );
 
         $this->model_subjek->update_data($where,$data,'subjek');
@@ -50,7 +50,7 @@ class Subjek_admin extends CI_Controller{
 
     public function hapus ($id)
     {
-        $where = array('id' => $id);
+        $where = array('id_subjek' => $id);
         $this->model_subjek->hapus_data($where, 'subjek');
         redirect('admin/subjek_admin/index');
     }

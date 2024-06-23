@@ -23,8 +23,8 @@
                 <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $jns->nama_dokumen ?></td>
-                    <td><div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div></td>
-                    <td><div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div></td>
+                    <td><?php echo anchor('admin/jenis_dokumen_admin/edit/' .$jns->id_dokumen, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div>')?></td>
+                    <td><?php echo anchor('admin/jenis_dokumen_admin/hapus/' .$jns->id_dokumen, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div>')?></td>
                 </tr>
             </tbody>
             <?php endforeach ?>
