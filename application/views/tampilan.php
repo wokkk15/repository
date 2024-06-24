@@ -39,7 +39,6 @@
         <img src="<?php echo base_url() ?>assets/logo.jpeg" alt="my-logo">
         <a href="<?php echo base_url('tampilan') ?>" class="logoname" style="text-decoration:none; color:#000;">Repository ITH</a>
       </div>
-
       <div class="search">
         <div class="search-bar">
           <div class="dropdown">
@@ -55,10 +54,11 @@
               <li class="dropdown-list-item">Penguji</li>
             </ul>
           </div>
-
           <div class="serach-box">
-            <input type="text" id="search-input" placeholder="Search Anything...">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <div><?php echo form_open('tampilan/search') ?></div>
+            <input type="text" name="keyword" id="search-input" placeholder="Search Anything...">
+            <button type="submit" style="border: none; background:none; " class="fa-solid fa-magnifying-glass"></button>
+            <?php echo form_close() ?>
           </div>
         </div>
       </div>
@@ -133,29 +133,29 @@
           <div class="d-flex justify-content-between">
             <div>
               <div class="judul">
-                <div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/' . $tbl->id) ?>" class="judul""><?php echo $tbl->judul; ?></a><br></div>
+                <div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/' . $tbl->id) ?>" class="judul"><?php echo $tbl->judul; ?></a><br></div>
               </div>
               <div class=" divider"></div>
-                <div class="write"><?php echo $tbl->penulis; ?></div>
-                <div class="write"><?php echo $tbl->jurusan; ?></div>
-              </div>
-              <div class="tag tag-kuning"><?php echo $tbl->jenis; ?></div>
+              <div class="write"><?php echo $tbl->penulis; ?></div>
+              <div class="write"><?php echo $tbl->jurusan; ?></div>
             </div>
-            <div class="abstrak" id="abstrak-<?php echo $tbl->id; ?>">
-              <strong class="fw-normal"></strong>
-              <p class="mb-2"></p>
-              <strong class="fw-normal">Abstrak:</strong>
-              <p class="mb-2"></p>
-              <p><?php echo $tbl->abstrak; ?></p>
-              <p class="mb-2"></p>
-              <strong class="fw-normal">Keyword(s):</strong>
-              <p><i><?php echo $tbl->keyword; ?></i></p>
-            </div>
-            <a class="read-more" data-id="<?php echo $tbl->id; ?>" onclick="toggleReadMore(<?php echo $tbl->id; ?>)">Read More</a>
+            <div class="tag tag-kuning"><?php echo $tbl->jenis; ?></div>
           </div>
-        <?php endforeach; ?>
+          <div class="abstrak" id="abstrak-<?php echo $tbl->id; ?>">
+            <strong class="fw-normal"></strong>
+            <p class="mb-2"></p>
+            <strong class="fw-normal">Abstrak:</strong>
+            <p class="mb-2"></p>
+            <p><?php echo $tbl->abstrak; ?></p>
+            <p class="mb-2"></p>
+            <strong class="fw-normal">Keyword(s):</strong>
+            <p><i><?php echo $tbl->keyword; ?></i></p>
+          </div>
+          <a class="read-more" data-id="<?php echo $tbl->id; ?>" onclick="toggleReadMore(<?php echo $tbl->id; ?>)">Read More</a>
         </div>
+      <?php endforeach; ?>
     </div>
+  </div>
   </div>
   <script>
     function toggleReadMore(id) {
