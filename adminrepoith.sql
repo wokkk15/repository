@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: Jun 05, 2024 at 08:38 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 25 Jun 2024 pada 14.55
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,32 +24,108 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabel`
+-- Struktur dari tabel `jenis_dokumen`
+--
+
+CREATE TABLE `jenis_dokumen` (
+  `id_dokumen` int(11) NOT NULL,
+  `nama_dokumen` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `jenis_dokumen`
+--
+
+INSERT INTO `jenis_dokumen` (`id_dokumen`, `nama_dokumen`) VALUES
+(1, 'SKRIPSI'),
+(2, 'TESIS'),
+(5, 'JURNAL'),
+(6, 'PROCEEDING');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `prodi`
+--
+
+CREATE TABLE `prodi` (
+  `id_prodi` int(11) NOT NULL,
+  `nama_prodi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `prodi`
+--
+
+INSERT INTO `prodi` (`id_prodi`, `nama_prodi`) VALUES
+(10, 'Ilmu Komputer'),
+(11, 'Matematika'),
+(12, 'Sisitem Informasi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `publikasi`
+--
+
+CREATE TABLE `publikasi` (
+  `id` int(11) NOT NULL,
+  `nama_penulis` varchar(100) NOT NULL,
+  `judul_terbitan` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `id_dokumen` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `subjek`
+--
+
+CREATE TABLE `subjek` (
+  `id_subjek` int(11) NOT NULL,
+  `nama_subjek` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `subjek`
+--
+
+INSERT INTO `subjek` (`id_subjek`, `nama_subjek`) VALUES
+(6, 'IOT (Internet of Things)'),
+(8, 'AI (Artificial Intelligence)'),
+(9, 'Machine learning');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tabel`
 --
 
 CREATE TABLE `tabel` (
   `id` int(11) NOT NULL,
   `judul` varchar(150) NOT NULL,
-  `jenis` varchar(20) NOT NULL,
+  `jenis` int(11) NOT NULL,
   `penulis` varchar(75) NOT NULL,
   `abstrak` text NOT NULL,
-  `keyword` varchar(50) NOT NULL,
-  `jurusan` varchar(30) NOT NULL
+  `keyword` varchar(100) NOT NULL,
+  `jurusan` varchar(30) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tabel`
+-- Dumping data untuk tabel `tabel`
 --
 
-INSERT INTO `tabel` (`id`, `judul`, `jenis`, `penulis`, `abstrak`, `keyword`, `jurusan`) VALUES
-(1, 'Pengembangan Media Proxy untuk Mendukung Komunikasi Real Time Berbasis Web (WebRTC)', 'JURNAL', 'Muhammad Aldi Alfatih | Arif Hidayat', 'Aplikasi komunikasi real time berbasis web (webRTC) cukup populer saat ini karena memberikan kemudahan bagi para pengguna dalam melakukan pertukaran data berupa gambar, suara maupun video antar client secara peer-to-peer tanpa adanya plugin tambahan seperti flash player pada browser. Akan tetapi aplikasi webRTC sendiri memiliki keterbatasan pada jumlah client yang dapat terhubung dalam satu waktu terkhusus pada aplikasi berupa video conference. Hal ini dikarenakan setiap client yang terhubung akan mengkonsumsi bandwidth, RAM, serta processor yang cukup tinggi seiring dengan peningkatan jumlah client (peer). Tujuan dari penelitian ini adalah untuk menghasilkan sebuah infrastruktur yang memanfaatkan media server untuk mengatasi kendala - kendala pada aplikasi webRTC serta dapat diterapkan di lingkungan Universitas Hasanuddin. Dalam penelitian ini dikembangkan sebuah algoritma yang dapat digunakan untuk membagi beban kerja dari aplikasi webRTC kedalam beberapa media server sehingga aplikasi webRTC dapat digunakan untuk skala yang lebih besar. Selain itu algoritma tersebut digunakan untuk mengoptimalkan penggunaan beberapa media server di lingkungan Universitas Hasanuddin. Hasil dari penelitian ini adalah dikembangkannya sebuah aplikasi webRTC berupa video conference yang menerapkan algoritma tersebut serta pembuatan model infrastruktur berbasis media server.', 'Kurento, Video Conference, webRTC', 'Sistem Informasi'),
-(2, 'REDUKSI REGION OF INTEREST UNTUK OPTIMALISASI KINERJA SISTEM KLASIFIKASI MODEL KENDARAAN ', 'TESIS', 'Muhammad Rivaldi Jefri | Osama Iyad Al Ghozy', 'Program uji emisi kendaraan diterapkan dalam rangka pengendalian pencemaran udara. Pengukuran tingkat emisi gas buang pada kendaraan selama ini dilakukan secara manual, meskipun hal tersebut juga dapat dilakukan dengan mengacu pada model kendaraan. Teknologi berbasis computer vision dapat dimanfaatkan untuk membuat kegiatan tersebut menjadi lebih efisien dengan bantuan sistem deteksi dan klasifikasi model kendaraan. Pada penelitian ini, sistem yang dibangun menggunakan pendekatan Region of Interest (ROI) dalam membatasi area pada gambar mobil, metode Three Frame Difference (TDF) dalam mendeteksi kendaraan, dan metode Oriented and Rotated BRIEF (ORB) serta Bag of Visual Word (BOVW) dengan rentang jumlah kluster 100 hingga 1000 yang berkelipatan 100 dan akan direkomendasikan dalam mengekstrak fitur kendaraan. Selain itu, untuk melakukan klasifikasi model kendaraan menggunakan metode Support Vector Machine (SVM). Sistem kemudian diuji berdasarkan perhitungan sensitivitas, kesalahan deteksi, dan akurasi. Hasil penelitian menunjukkan bahwa sistem mampu mendeteksi kendaraan dengan nilai rata-rata nilai sensitivitas sebesar 98.36% dan tingkat kesalahan deteksi sebesar 7.33%. Selain itu, dengan membatasi atau mereduksi area pada gambar dapat mengoptimalkan kinerja sistem dengan rata-rata peningkatan akurasi sebesar 8.4%. Pada tahap klasifikasi dengan 5 model kendaraan diperoleh akurasi maksimum sebesar 83.81% pada kluster 800.', 'sistem deteksi, klasifikasi model kendaraan, reduk', 'Ilmu Komputer'),
-(3, 'Sistem Deteksi Pelat Nomor Kendaraan Roda Dua Berdasarkan Variabel Kecepatan ', 'SKRIPSI', 'Andi Marimar Muchtamar | Indrabayu | Intan Sari Areni', 'Kepadatan kendaraan di dominasi oleh kendaraan roda dua. Dari data Badan Pusat Statistik tahun 2018 yang bersumber dari Kantor Kepolisian Republik Indonesai menuliskan bahwa jumlah sepeda motor untuk wilayah Indonesia sebanyak 120.101 Juta dari jumlah kendaraan sebanyak 146.858 Juta. Jumlah kendaraan yang banyak mengakibatkan aparat kepolisian sulit untuk menindak lanjuti pengendara jika terjadi pelanggaran. Peristiwa ini menjadi masalah karena kurangnya bukti dalam pelanggaran sehingga jika terjadi pelanggaran tidak dapat ditindak lanjuti. Nomor polisi yang tercantum pada pelat kendaraan bisa digunakan oleh pihak berwajib sebagai barang bukti pengendara yang melakukan pelanggaran lalu lintas. Penelitian-penelitian sebelumnya yang telah dilakukan membuat sistem deteksi pelat dengan satu kendaraan saja. Maka pada penelitian ini mengembangkan sistem yang dapat mendeteksi dan mengenali teks pelat lebih dari satu kendaraan atau multi detection. Metode yang digunakan adalah Local Binary Pattern (LBP) untuk mendeteksi pelat dan Optical Character Recognition (OCR) untuk mengenali teks pada pelat kendaraan roda dua. Penelitian ini menggunakan tiga skenario yang berbeda-beda. Pada skenario pertama dengan 1 kendaraan, skenario kedua dengan 2 kendaraan dan skenario ketiga dengan 3 kendaraan dengan masing-masing kecepatan 40 km/jam, 50 km/jam dan 60 km/jam, diambil menggunakan kamera static Vivotek ip 9165-hp. Hasil penelitian menunjukkan akurasi untuk deteksi pelat menghasilkan akurasi 100%. Tetapi untuk mengenali teks karakter mendapatkan akurasi tertinggi 80% pada single detection dan untuk multi detection mengasilkan akurasi tertinggi 90%. Data uji digunakan sebanyak 16 file data dengan berdurasi 30 detik dengan masing-masing video terdapat 9 sampai 10 kendaraan roda dua.', 'Pelat Nomor Kendaraan, Local Binary Pattern (LBP),', 'Ilmu Komputer');
+INSERT INTO `tabel` (`id`, `judul`, `jenis`, `penulis`, `abstrak`, `keyword`, `jurusan`, `file`, `status`) VALUES
+(55, ' ANALISIS PERBANDINGAN PERFORMANSI WEBSITE BERBASIS REACT JS DAN JAVASCRIPT UNTUK MENAMPILKAN GAMBAR BERFORMAT WEBP DENGAN JPG OPTIMIZE DAN PNG OPTIMI', 1, 'Aldi alfatih', 'Salah satu faktor yang mempengaruhi kenyamanan pengguna dalam mengunjungi website adalah performa saat membuka website. Website yang memiliki ukuran file gambar yang besar akan menurunkan performa website dan waktu untuk menampilkan website menjadi lebih lama. Oleh sebab itu, dibutuhkan cara mengoptimalisasi gambar agar mendapatkan ukuran yang lebih kecil. Salah satu cara untuk mengoptimalisasi gambar yaitu dengan mengubah format gambar menjadi format WebP. WebP merupakan format gambar yang dapat membuat ukuran gambar yang lebih kecil tanpa mengurangi kualitas gambar sehingga web menjadi lebih cepat. Adapun tujuan penelitian ini untuk mengetahui performansi dan kualitas format gambar WebP, JPG dan PNG pada website berbasis ReactJS dan Javascript. Proses analisis penelitian ini, akan membandingkan format gambar JPG dan PNG dengan format gambar WebP dengan web berbasis ReactJS dan Javascript. Analisis yang dilakukan menggunakan web dev-tools di google chrome dan package Javascript untuk menghasilkan format gambar webp dan script python untuk menghitung nilai PSNR format gambar. Hasil penelitian menunjukkan bahwa format webp menghasilkan ukuran file yang lebih rendah dibandingkan dengan format gambar sebelumnya yaitu JPG dan PNG, memiliki kualitas gambar yang tidak terlalu berbeda dan load time yang lebih rendah. Namun Jika format webp dibandingkan dengan format JPG yang sudah di optimize dan disamakan ukurannya dengan format gambar WebP, load time kedua format gambar sama. Tetapi untuk kualitas gambar, format webp jauh lebih baik dibandingkan dengan JPG dan PNG yang sudah di optimize. ', 'webp, kualitas gambar, load time, ReactJS, Javascript', 'Ilmu Komputer', '637ecfc696b353bd872a3a9dc9fcbf44.pdf', ''),
+(56, 'SISTEM DETEKSI LOKASI IDEAL PENANAMAN RUMPUT LAUT BERBASIS IOT', 2, 'Arif Hidayat', 'Salah satu sumber daya hayati bawah laut yang sangat banyak di perairan Indonesia adalah rumput laut, yang juga dikenal sebagai seaweed. Rumput laut terkenal di Indonesia dengan kualitas yang tinggi dan memiliki peminatan yang banyak karena mengandung jumlah keragian, agar-agar, dan alginat yang cukup tinggi, sehingga cocok digunakan sebagai bahan baku industri makanan, pelembut rasa, pencegah kristalisasi es krim, dan sebagai bahan untuk obat-obatan. Salah satu tantangan dalam budidaya rumput laut adalah faktor kegagalan rumput laut seperti pertumbuhan yang berjalan lambat karena kondisi lingkungan yang tidak mendukung pada waktu atau musim tertentu. Faktor lain adalah penyakit atau hama yang menyerang rumput laut. Penyakit yang menyerang rumput laut dikenal dengan sebutan penyakit ice-ice, gangguan penyakit ini berasal dari bakteri pseudoaiteromonas gracilis, adapun penyebabnya ialah adanya tekanan lingkungan oleh fluktuasi parameter, akibat kualitas pada air menjadi tinggi seperti kadar garam, intensitas cahaya matahari dan yang lainnya. Tujuan penelitian ini adalah mencegah terjadinya kegagalan rumput laut menggunakan teknologi Internet of Things dengan merancang sebuah sistem deteksi lokasi ideal penanaman rumput laut. Alat ini menggunakan mikrokontroler NodeMCU ESP8266 dengan bantuan sensor yaitu sensor ultrasonic JSN-SR04T untuk kedalaman air, sensor suhu DS18B20, sensor waterflow YF-S201 untuk arus air, sensor pH 4502C dan sensor GPS Ublox Neo-M8N. Hasil penelitian menunjukkan bahwa sistem ini bekerja sesuai harapan karena mampu monitoring data sensor pada dashboard blynk secara realtime dan mampu menggambarkan lokasi yang ideal untuk penanaman rumput laut pada peta. Dengan bantuan alat ini, petani rumput laut dapat menentukan lokasi yang tepat untuk penanaman rumput laut sehingga dapat mencegah terjadinya gagal panen.', 'Rumput Laut, Internet of Things, NodeMCU ESP8266, Sensor', 'Ilmu Komputer', 'c8c27439c14960cf0a42dd181f84b2e0.pdf', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user`
+-- Struktur dari tabel `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -61,44 +137,140 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_user`
+-- Dumping data untuk tabel `tb_user`
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `role_id`) VALUES
 (1, 'admin', 'admin', '123', 1),
 (2, 'mala', 'user', '12345', 2);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tesis`
+--
+
+CREATE TABLE `tesis` (
+  `id` int(11) NOT NULL,
+  `id_publikasi` int(11) NOT NULL,
+  `nim` varchar(20) NOT NULL,
+  `kota` varchar(100) NOT NULL,
+  `institusi` varchar(100) NOT NULL,
+  `fakultas` varchar(100) NOT NULL,
+  `tipe` varchar(100) NOT NULL,
+  `pembimbing` varchar(100) NOT NULL,
+  `file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tabel`
+-- Indeks untuk tabel `jenis_dokumen`
 --
-ALTER TABLE `tabel`
+ALTER TABLE `jenis_dokumen`
+  ADD PRIMARY KEY (`id_dokumen`);
+
+--
+-- Indeks untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
+  ADD PRIMARY KEY (`id_prodi`);
+
+--
+-- Indeks untuk tabel `publikasi`
+--
+ALTER TABLE `publikasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_user`
+-- Indeks untuk tabel `subjek`
+--
+ALTER TABLE `subjek`
+  ADD PRIMARY KEY (`id_subjek`);
+
+--
+-- Indeks untuk tabel `tabel`
+--
+ALTER TABLE `tabel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jenis` (`jenis`);
+
+--
+-- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indeks untuk tabel `tesis`
+--
+ALTER TABLE `tesis`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_publikasi` (`id_publikasi`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tabel`
+-- AUTO_INCREMENT untuk tabel `jenis_dokumen`
+--
+ALTER TABLE `jenis_dokumen`
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `publikasi`
+--
+ALTER TABLE `publikasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `subjek`
+--
+ALTER TABLE `subjek`
+  MODIFY `id_subjek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tabel`
 --
 ALTER TABLE `tabel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
--- AUTO_INCREMENT for table `tb_user`
+-- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tesis`
+--
+ALTER TABLE `tesis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `tabel`
+--
+ALTER TABLE `tabel`
+  ADD CONSTRAINT `tabel_ibfk_2` FOREIGN KEY (`jenis`) REFERENCES `jenis_dokumen` (`id_dokumen`);
+
+--
+-- Ketidakleluasaan untuk tabel `tesis`
+--
+ALTER TABLE `tesis`
+  ADD CONSTRAINT `tesis_ibfk_1` FOREIGN KEY (`id_publikasi`) REFERENCES `publikasi` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
