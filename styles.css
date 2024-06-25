@@ -45,6 +45,7 @@ body {
 
 .logoname {
     font-weight: 700;
+    color: #000000;
     display: flex;
     align-items: center;
 }
@@ -393,7 +394,7 @@ label .checkbox .check::after {
 }
 
 .form-field {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form-field label {
@@ -461,4 +462,3 @@ label .checkbox .check::after {
 .mt-3 {
     margin-top: 1rem !important;
 }
-

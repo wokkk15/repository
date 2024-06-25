@@ -1,4 +1,4 @@
-let dropdownBtn = document.getElementById("drop-text");
+// let dropdownBtn = document.getElementById("drop-text");
 let list = document.getElementById("list");
 let icon = document.getElementById("icon");
 let span = document.getElementById("span");
@@ -15,7 +15,7 @@ dropdownBtn.onclick = function () {
     list.classList.toggle("show");
 };
 
-//hide dropdown list saat kelik outside dropdown btn
+// hide dropdown list saat kelik outside dropdown btn
 window.onclick = function (e) {
     if(
         e.target.id !== "drop-text" &&
