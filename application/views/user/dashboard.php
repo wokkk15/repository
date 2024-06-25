@@ -27,20 +27,19 @@
             </div>
 
             <ul class="navigation">
-                <li><a href="login.html" class="active">Logout</a></li>
+                <li><a href="<?php echo base_url('login')?>" class="active">Logout</a></li>
             </ul>
         </nav>
     </div>
 
-
-
     <section class="ftco-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='form.html'" style="margin-bottom: 10px; margin-top: 40px;">
-                    <i class="fa-solid fa-pen-to-square"></i> Tambah Publikasi
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 10px; margin-top: 30px;">
+                <i class="fa-solid fa-pen-to-square"></i> Tambah Publikasi
                 </button>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-wrap">
@@ -64,7 +63,7 @@
                                     <td>Mind of Mind</td>
                                     <td><a href="#" class="btn btn-success">Published</a></td>
                                 </tr>
-    
+
                                 <tr>
                                     <th>Zayn J Malik, Abelly</th>
                                     <td>Internet of Things</td>
@@ -94,9 +93,165 @@
                 </div>
             </div>
         </div>
+
     </section>
-     
-<script src="<?php echo base_url()?>assets/scripts.js"></script>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="form">
+                <?php echo form_open_multipart('user/dashboard_user/tambah_aksi'); ?>
+                    <div class="mb-3">
+                        <label for="inputType" class="form-label">Type</label>
+                        <select type="select" class="form-control" name="jenis" id="inputType" placeholder="type">
+                            <option value="Jurnal">Jurnal</option>
+                            <option value="Skripsi">Skripsi</option>
+                            <option value="Tesis">Tesis</option>
+                            <option value="PROCEEDING">Proceeding</option>
+                        </select>
+                    </div>
+                        <div class="mb-3">
+                            <label for="inputJudul" class="form-label">Judul</label>
+                            <input type="text" name="judul" class="form-control" id="inputJudul" placeholder="Masukkan author name as 'last name, first name' (e.g. 'Mark, Lee')">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Abstrak</label>
+                            <textarea class="form-control" name="abstrak" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPenulis" class="form-label">Penulis</label>
+                            <input type="text" class="form-control" name="penulis" id="inputPenulis" placeholder="Masukkan Penulis">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputprodi" class="form-label">prodi</label>
+                        <select type="select" class="form-control" name="jurusan" id="inputprodi" placeholder="prodi">
+                            <option value="Ilmu Komputer">Ilmu Komputer</option>
+                            <option value="Matematika">Matematika</option>
+                            <option value="Sisitem Informasi">Sisitem Informasi</option>
+                        </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputkeyword" class="form-label">keyword</label>
+                            <input type="text" class="form-control" name="keyword" id="inputkeyword" placeholder="Masukkan keyword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputfile" class="form-label">file</label>
+                            <input type="file" class="form-control" name="file" id="inputfile" require="">
+                        </div>
+
+                        <!-- <div id="form">
+
+                        </div> -->
+                        <!-- <div id="form-content">
+
+                        </div> -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="sumbit" value="upload" class="btn btn-primary">Simpan</button>
+                        </div>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <script>
+    $(document).ready(function() {
+        $('#inputType').change(function(e) {
+            const type = $('#inputType').val();
+            console.log({ type });
+            $('#form-content').empty();
+            if (type == '1') {
+                // $('#form').load('<?php echo base_url() ?>form-input-skripsi.html');
+                $('#form-content').append(
+                    `<div class="mb-3">
+                        <label for="inputNim" class="form-label">NIM</label>
+                        <input type="text" class="form-control" id="inputNim" placeholder="Masukkan NIM">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputKota" class="form-label">Kota</label>
+                        <input type="text" class="form-control" id="inputKota" placeholder="Masukkan Kota">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputInstitusi" class="form-label">Institusi</label>
+                        <input type="text" class="form-control" id="inputInstitusi" placeholder="Masukkan Institusi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputFakultas" class="form-label">Fakultas</label>
+                        <input type="text" class="form-control" id="inputFakultas" placeholder="Masukkan Fakultas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTipe" class="form-label">Tipe</label>
+                        <input type="text" class="form-control" id="inputTipe" placeholder="Masukkan Tipe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPembimbing" class="form-label">Pembimbing</label>
+                        <input type="text" class="form-control" id="inputPembimbing" placeholder="Masukkan Pembimbing">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputFile" class="form-label">File</label>
+                        <input type="file" class="form-control" id="inputFile">
+                    </div>`
+                );
+            } else if (type == '2') {
+                $('#form-content').append(
+                    `
+                    <div class="mb-3">
+                        <label for="inputKota" class="form-label">Kota</label>
+                        <input type="text" class="form-control" id="inputKota" placeholder="Masukkan Kota">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputInstitusi" class="form-label">Institusi</label>
+                        <input type="text" class="form-control" id="inputInstitusi" placeholder="Masukkan Institusi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputDepertemen" class="form-label">Depertemen</label>
+                        <input type="text" class="form-control" id="inputDepertemen" placeholder="Masukkan Depertemen">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputFile" class="form-label">File</label>
+                        <input type="file" class="form-control" id="inputFile">
+                    </div>`
+                );
+            } else if (type == '5') {
+                $('#form-content').append(
+                    `<div class="mb-3">
+                        <label for="inputissue" class="form-label">issue</label>
+                        <input type="text" class="form-control" id="inputissue">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputvolume" class="form-label">volume</label>
+                        <input type="text" class="form-control" id="inputvolume">
+                    </div>`
+                );
+            } else if (type == '6') {
+                $('#form-content').append(
+                    `<div class="mb-3">
+                        <label for="inputpenerbit" class="form-label">Penerbit</label>
+                        <input type="text" class="form-control" id="inputpenerbit">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputkota" class="form-label">Kota</label>
+                        <input type="text" class="form-control" id="inputkota">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputafiliasi" class="form-label">Afiliasi</label>
+                        <input type="text" class="form-control" id="inputafiliasi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputFile" class="form-label">File</label>
+                        <input type="file" class="form-control" id="inputFile">
+                    </div>`
+                );
+            } else {
+                
+            }
+        });
+    });
+</script> -->
 
 </body>
 </html>

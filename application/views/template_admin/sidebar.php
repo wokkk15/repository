@@ -1,8 +1,5 @@
 
 <body>
-
-
-    
     <div class="wrapper">
         <aside id="sidebar">
             <div class="h-100">
@@ -45,7 +42,6 @@
                     </li>
                 </ul>
             </div>
-
         </aside>
 
         <div class="main">
@@ -62,7 +58,7 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="#" class="dropdown-item">Profile</a>
                                 <a href="#" class="dropdown-item">Setting</a>
-                                <a href="logout.php" class="dropdown-item">Logout</a>
+                                <a href="<?php echo base_url('login') ?>" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>

@@ -1,8 +1,8 @@
 <div class="container-fluid">
-    <div class="box-header" style="margin: 10px;">
-        <h3 class="box-title">Repository</h3>
-        <div class="text-end">
-            <button class="btn btn-primary m-3"><i class="fas fa-plus fa-sm"></i>
+    <div class="box-header d-flex justify-content-between" style="margin: 10px;">
+        <h3 class="box-title">Prodi</h3>
+        <div>
+            <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-plus fa-sm"></i>
                 Tambah
             </button>
         </div>
@@ -13,20 +13,21 @@
                 <tr>
                     <th>NO</th>
                     <th>Nama Prodi</th>
-                    <th colspan="3">Aksi</th>
+                    <th colspan="2">Aksi</th>
                 </tr>
             </thead>
             <?php 
             $no=1;
-            foreach($tabel as $tbl) ;?>
+            foreach ($prodi as $pro) : ?>
             <tbody>
                 <tr>
                     <td><?php echo $no++ ?></td>
-                    <td><?php echo $tbl->jurusan ?></td>
-                    <td><div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div></td>
-                    <td><div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div></td>
+                    <td><?php echo $pro->nama_prodi ?></td>
+                    <td><?php echo anchor('admin/prodi_admin/edit/' .$pro->id_prodi, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</div>')?></td>
+                    <td><?php echo anchor('admin/prodi_admin/hapus/' .$pro->id_prodi, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus</div>')?></td>
                 </tr>
             </tbody>
+            <?php endforeach; ?>
         </table>
     </main>
 
@@ -34,17 +35,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">FORM INPUT PRODI</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
+                <form action="<?php echo base_url(). 'admin/prodi_admin/tambah_aksi';?>" method="post">
+                    <div class="form-group">
+                        <label>Nama Prodi</label>
+                        <input type="text" name="nama_prodi" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
-        </div>
+    </div>
 </div>
