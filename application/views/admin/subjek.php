@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="box-header" style="margin: 10px;">
+    <div class="box-header d-flex justify-content-between" style="margin: 10px;">
         <h3 class="box-title">Subjek</h3>
         <div">
             <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-plus fa-sm"></i>

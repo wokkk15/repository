@@ -104,57 +104,61 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="form">
-                <form action="<?php echo base_url(). 'publikasi/create';?>" method="post">
+                <?php echo form_open_multipart('user/dashboard_user/tambah_aksi'); ?>
                     <div class="mb-3">
-                        <label for="inputType" class="form-label">Reference Type</label>
-                        <select type="select" name="id_dokumen" class="form-control" id="inputType">
-                        <?php foreach ($jenis_dokumen as $jns): ?>
-                            <option value="<?php echo $jns->id_dokumen ?>"><?php echo $jns->nama_dokumen ?></option>
-                        <?php endforeach ?>
+                        <label for="inputType" class="form-label">Type</label>
+                        <select type="select" class="form-control" name="jenis" id="inputType" placeholder="type">
+                            <option value="Jurnal">Jurnal</option>
+                            <option value="Skripsi">Skripsi</option>
+                            <option value="Tesis">Tesis</option>
+                            <option value="PROCEEDING">Proceeding</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="inputJudul" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="inputJudul" placeholder="Masukkan author name as 'last name, first name' (e.g. 'Mark, Lee')">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Abstrak</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPenulis" class="form-label">Penulis</label>
-                        <input type="text" class="form-control" id="inputPenulis" placeholder="Masukkan Penulis">
-                    </div>
-                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="inputJudul" class="form-label">Judul</label>
+                            <input type="text" name="judul" class="form-control" id="inputJudul" placeholder="Masukkan author name as 'last name, first name' (e.g. 'Mark, Lee')">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Abstrak</label>
+                            <textarea class="form-control" name="abstrak" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPenulis" class="form-label">Penulis</label>
+                            <input type="text" class="form-control" name="penulis" id="inputPenulis" placeholder="Masukkan Penulis">
+                        </div>
+                        <div class="mb-3">
                         <label for="inputprodi" class="form-label">prodi</label>
-                        <input type="text" class="form-control" id="inputprodi" placeholder="Masukkan prodi">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputTahun" class="form-label">Tahun</label>
-                        <input type="date" class="form-control" id="inputTahun" placeholder="Masukkan Tahun Terbit">
-                    </div>
-                    <div id="form">
+                        <select type="select" class="form-control" name="jurusan" id="inputprodi" placeholder="prodi">
+                            <option value="Ilmu Komputer">Ilmu Komputer</option>
+                            <option value="Matematika">Matematika</option>
+                            <option value="Sisitem Informasi">Sisitem Informasi</option>
+                        </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputkeyword" class="form-label">keyword</label>
+                            <input type="text" class="form-control" name="keyword" id="inputkeyword" placeholder="Masukkan keyword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputfile" class="form-label">file</label>
+                            <input type="file" class="form-control" name="file" id="inputfile" require="">
+                        </div>
 
-                    </div>
-                    <div id="form-content">
+                        <!-- <div id="form">
 
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputFile" class="form-label">File</label>
-                        <input type="file" class="form-control" id="inputFile">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="sumbit" class="btn btn-primary">simpan</button>
-                    </div>
-                </form>
+                        </div> -->
+                        <!-- <div id="form-content">
+
+                        </div> -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="sumbit" value="upload" class="btn btn-primary">Simpan</button>
+                        </div>
+                    <?php echo form_close(); ?>
                 </div>
-
             </div>
         </div>
     </div>
-      
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('#inputType').change(function(e) {
             const type = $('#inputType').val();
@@ -247,7 +251,7 @@
             }
         });
     });
-</script>
+</script> -->
 
 </body>
 </html>

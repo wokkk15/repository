@@ -9,4 +9,26 @@ class Repository_admin extends CI_Controller{
         $this->load->view('admin/repository', $data);
         $this->load->view('template_admin/footer');
     }
+
+    public function detail($file) {
+        $file_path = FCPATH . 'uploads/file/' . $file;
+
+        if (file_exists($file_path)) {
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $file . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+
+            @readfile($file_path);
+        } else {
+            show_404();
+        }
+    }
+
+    public function acc()
+    {
+        
+        echo json_encode(array('id' => $_POST['id']));
+        exit();
+    }
 }
