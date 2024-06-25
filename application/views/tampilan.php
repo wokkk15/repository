@@ -82,7 +82,7 @@
       </div>
       <?php foreach ($jenis_dokumen as $jns) : ?>
         <div class="form-group">
-          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" value="<?= $jns->id_dokumen ?>" />
+          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" class="filter-checkbox" value="<?= $jns->id_dokumen ?>" />
           <label for="id-<?= $jns->id_dokumen ?>">
             <span class="checkbox">
               <span class="check"></span>
@@ -92,6 +92,7 @@
         </div>
       <?php endforeach; ?>
 
+
       <div class="divider"></div>
 
       <div class="form-group-type" style="margin-bottom: 20px;">
@@ -99,7 +100,7 @@
       </div>
       <?php foreach ($subjek as $sbk) : ?>
         <div class="form-group">
-          <input type="checkbox" id="id-<?= $sbk->id_subjek ?>" name="subjek" value="<?= $sbk->id_subjek ?>" />
+          <input type="checkbox" id="id-<?= $sbk->id_subjek ?>" name="subjek" class="filter-checkbox" value="<?= $sbk->id_subjek ?>" />
           <label for="id-<?= $sbk->id_subjek ?>">
             <span class="checkbox">
               <span class="check"></span>
@@ -116,7 +117,7 @@
       </div>
       <?php foreach ($prodi as $pro) : ?>
         <div class="form-group">
-          <input type="checkbox" id="id-<?= $pro->id_prodi ?>" name="prodi" value="<?= $pro->id_prodi ?>" />
+          <input type="checkbox" id="id-<?= $pro->id_prodi ?>" name="prodi" class="filter-checkbox" value="<?= $pro->id_prodi ?>" />
           <label for="id-<?= $pro->id_prodi ?>">
             <span class="checkbox">
               <span class="check"></span>
@@ -127,7 +128,7 @@
       <?php endforeach; ?>
     </div>
 
-    <div class="col-lg-9 mb-3">
+    <div class="col-lg-9 mb-3" id="result-container">
       <?php foreach ($tabel as $tbl) : ?>
         <div class="row2 form-container">
           <div class="d-flex justify-content-between">
@@ -139,7 +140,9 @@
               <div class="write"><?php echo $tbl->penulis; ?></div>
               <div class="write"><?php echo $tbl->jurusan; ?></div>
             </div>
-            <div class="tag tag-kuning"><?php echo $tbl->jenis; ?></div>
+
+            <div class="tag tag-kuning"><?php echo $tbl->nama_dokumen; ?></div>
+
           </div>
           <div class="abstrak" id="abstrak-<?php echo $tbl->id; ?>">
             <strong class="fw-normal"></strong>
@@ -170,6 +173,67 @@
         readMoreLink.innerHTML = 'Read Less';
       }
     }
+
+    $(document).ready(function() {
+      $('.filter-checkbox').on('change', function() {
+        var jenis_dokumen = [];
+        var subjek = [];
+        var prodi = [];
+
+        $('input[name="jenis_dokumen"]:checked').each(function() {
+          jenis_dokumen.push($(this).val());
+        });
+
+        $('input[name="subjek"]:checked').each(function() {
+          subjek.push($(this).val());
+        });
+
+        $('input[name="prodi"]:checked').each(function() {
+          prodi.push($(this).val());
+        });
+
+        $.ajax({
+          url: '<?php echo base_url('tampilan/filter'); ?>',
+          type: 'POST',
+          data: {
+            jenis_dokumen: jenis_dokumen,
+            subjek: subjek,
+            prodi: prodi
+          },
+          success: function(data) {
+            var result = JSON.parse(data);
+            $('#result-container').empty();
+            $.each(result, function(index, item) {
+              var resultHtml = '<div class="row2 form-container">' +
+                '<div class="d-flex justify-content-between">' +
+                '<div>' +
+                '<div class="judul">' +
+                '<div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/'); ?>' + item.id + '" class="judul">' + item.judul + '</a><br></div>' +
+                '</div>' +
+                '<div class=" divider"></div>' +
+                '<div class="write">' + item.penulis + '</div>' +
+                '<div class="write">' + item.jurusan + '</div>' +
+                '</div>' +
+                '<div class="tag tag-kuning">' + item.jenis + '</div>' +
+                '</div>' +
+                '<div class="abstrak" id="abstrak-' + item.id + '">' +
+                '<strong class="fw-normal"></strong>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Abstrak:</strong>' +
+                '<p class="mb-2"></p>' +
+                '<p>' + item.abstrak + '</p>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Keyword(s):</strong>' +
+                '<p><i>' + item.keyword + '</i></p>' +
+                '</div>' +
+                '<a class="read-more" data-id="' + item.id + '" onclick="toggleReadMore(' + item.id + ')">Read More</a>' +
+                '</div>';
+              $('#result-container').append(resultHtml);
+            });
+          }
+        });
+      });
+    });
   </script>
   <script src="<?php echo base_url() ?>assets/scripts.js"></script>
 </body>

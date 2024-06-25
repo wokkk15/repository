@@ -16,7 +16,7 @@ class Tampilan extends CI_Controller
         $data['jenis_dokumen'] = $this->model_dokumen->tampil_dokumen()->result();
         $data['subjek'] = $this->model_subjek->tampil_subjek()->result();
         $data['prodi'] = $this->model_prodi->tampil_prodi()->result();
-        $data['tabel'] = $this->model_table->tampil_data()->result();
+        $data['tabel'] = $this->model_table->get_tabel_with_nama_dokumen();
         $this->load->view('tampilan', $data);
     }
 
@@ -28,5 +28,15 @@ class Tampilan extends CI_Controller
         $data['prodi'] = $this->model_prodi->tampil_prodi()->result();
         $data['tabel'] = $this->model_table->get_keyword($keyword);
         $this->load->view('tampilan', $data);
+    }
+
+    public function filter()
+    {
+        $jenis_dokumen = $this->input->post('jenis_dokumen');
+        $subjek = $this->input->post('subjek');
+        $prodi = $this->input->post('prodi');
+
+        $data['tabel'] = $this->model_table->filter_data($jenis_dokumen, $subjek, $prodi);
+        echo json_encode($data['tabel']);
     }
 }
