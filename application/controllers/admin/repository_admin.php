@@ -1,8 +1,10 @@
 <?php
 
 class Repository_admin extends CI_Controller{
+
     public function index()
     {
+        // $data['tabel1'] = $this->model_table->get_pending_files();
         $data['tabel'] = $this->model_table->tampil_data()->result();
         $this->load->view('template_admin/header');
         $this->load->view('template_admin/sidebar');
@@ -25,10 +27,17 @@ class Repository_admin extends CI_Controller{
         }
     }
 
-    public function acc()
+    public function acc($id)
     {
-        
-        echo json_encode(array('id' => $_POST['id']));
-        exit();
+        $this->model_table->update_file_status($id, 'approved');
+        redirect('admin/repository_admin/index');
+        // echo json_encode(array('id' => $_POST['id']));
+        // exit();
+    }
+
+    public function reject($id)
+    {
+        $this->model_table->update_file_status($id, 'rejected');
+        redirect('admin/repository_admin/index');
     }
 }

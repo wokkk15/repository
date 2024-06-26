@@ -8,7 +8,8 @@ class Dashboard_user extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('user/dashboard');
+        $data['tabel'] = $this->model_table->tampil_data()->result();
+        $this->load->view('user/dashboard',$data);
     }
 
     public function tambah_aksi() { 
@@ -56,10 +57,11 @@ class Dashboard_user extends CI_Controller {
             'penulis'   => $penulis,
             'jurusan'   => $jurusan,
             'keyword'   => $keyword,
-            'file'      => $file_name
+            'file'      => $file_name,
+            'status'    => 'Pending',
         );
-
-        $this->model_table->tambah($data, 'tabel');
+        // $this->model_table->tambah($data, 'tabel');
+        $this->model_table->insert_file($data);
         redirect('user/dashboard_user');
     }
 }
