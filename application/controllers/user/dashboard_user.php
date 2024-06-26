@@ -8,7 +8,8 @@ class Dashboard_user extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('user/dashboard');
+        $data['tabel'] = $this->model_table->tampil_data()->result();
+        $this->load->view('user/dashboard',$data);
     }
 
     public function tambah_aksi() { 
@@ -19,7 +20,6 @@ class Dashboard_user extends CI_Controller {
         $jurusan  = $this->input->post('jurusan');
         $keyword  = $this->input->post('keyword');
         $file     = $_FILES['file'];
-        
 
         // Pastikan direktori upload ada dan dapat ditulisi
         $upload_path = './uploads/file/';
@@ -58,10 +58,10 @@ class Dashboard_user extends CI_Controller {
             'jurusan'   => $jurusan,
             'keyword'   => $keyword,
             'file'      => $file_name,
-            'status'    => 0
+            'status'    => 'Pending',
         );
-
-        $this->model_table->tambah($data, 'tabel');
+        // $this->model_table->tambah($data, 'tabel');
+        $this->model_table->insert_file($data);
         redirect('user/dashboard_user');
     }
 }

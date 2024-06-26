@@ -52,41 +52,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr >
-                                    <th >Zayn J Malik, Giantara A.</th>
-                                    <td>My Universe</td>
-                                    <td><a href="#" class="btn btn-success">Published</a></td>
-                                </tr>
-    
+                                <?php
+                                foreach($tabel as $tbl) : ?>
                                 <tr>
-                                    <th>Zayn J Malik</th>
-                                    <td>Mind of Mind</td>
-                                    <td><a href="#" class="btn btn-success">Published</a></td>
+                                    <td ><?php echo $tbl->penulis ?></td>
+                                    <td><?php echo $tbl->judul ?></td>
+                                    <td><?php echo $tbl->status ?></a></td>
                                 </tr>
-
-                                <tr>
-                                    <th>Zayn J Malik, Abelly</th>
-                                    <td>Internet of Things</td>
-                                    <td><a href="#" class="btn btn-warning">Review</a></td>
-                                </tr>
-    
-                                <tr>
-                                    <th>Zayn J Malik, Ijoscripts</th>
-                                    <td>Hilmy & Milan</td>
-                                    <td><a href="#" class="btn btn-danger">Rejected</a></td>
-                                </tr>
-    
-                                <tr>
-                                    <th>Zayn J Malik, Evyra Rizki Safitri</th>
-                                    <td>Sistem Penentuan Indeks Massa Tubuh Menggunakan Pengolahan Citra Digital</td>
-                                    <td><a href="#" class="btn btn-success">Published</a></td>
-                                </tr>
-    
-                                <tr>
-                                    <th>Zayn J Malik,Ahmad Rusadi Arrahimi, Veri Julianto, Oky Rahmanto</th>
-                                    <td>MACHINE LEARNING TO DETECT PALM OIL DISEASES BASED ON LEAF EXTRACTION FEATURES AND PRINCIPAL COMPONENT ANALYSIS (PCA)</td>
-                                    <td><a href="#" class="btn btn-success">Published</a></td>
-                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

@@ -31,14 +31,14 @@
                             <td><a href="<?= site_url('admin/repository_admin/detail/'.$tbl->file) ?>" class="" target="_blank">View PDF</a></td>
                             <td class="d-flex"><?php echo anchor('admin/repository_admin/acc/' .$tbl->id, '<button class="btn btn-primary btn-sm"><i class="fa-solid fa-check"></i></button>') ?>
                             <?php echo anchor('admin/repository_admin/reject/' .$tbl->id, '<button class="btn btn-danger btn-sm"><i class="fa-solid fa-x"></i></button>') ?>
-                                <!-- <?php if($tbl->status=='') { // tidak diterima
-                                    echo '<button class="btn btn-primary btn-sm" id="btn-update-status" onclick="changeStatus(<?php echo $tbl->id ?>)"><i class="fa-solid fa-check"></i></button>';
-                                } else {
-                                    echo '<button class="btn btn-danger btn-sm"><i class="fa-solid fa-x"></i></button>';
-                                 } ?> -->
                             </td>
+                            <!-- <td>
+                                <a href="<?php echo site_url('admin/repository_admin/acc/'.$tbl->id); ?>">Approve</a>
+                                <a href="<?php echo site_url('admin/repository_admin/reject/'.$tbl->id); ?>">Reject</a>
+                            </td> -->
                         </tr>
                     </tbody>
+
                     <?php endforeach; ?>
             </table>
         </div>
@@ -73,7 +73,7 @@
         </div>
     </div> -->
 </div>
-<script>
+<!-- <script>
 
         function changeStatus(id) {
             console.log({ id});
@@ -82,4 +82,4 @@
             })
         }
  
-</script>
+</script> -->

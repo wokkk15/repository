@@ -84,7 +84,7 @@
       </div>
       <?php foreach ($jenis_dokumen as $jns) : ?>
         <div class="form-group">
-          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" value="<?= $jns->id_dokumen ?>" />
+          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" class="filter-checkbox" value="<?= $jns->id_dokumen ?>" />
           <label for="id-<?= $jns->id_dokumen ?>">
             <span class="checkbox">
               <span class="check"></span>
@@ -159,6 +159,7 @@
         </div>
     </div>
   </div>
+  
   <script >
     let dropdownBtn = document.getElementById("drop-text");
     let list = document.getElementById("list");
@@ -238,6 +239,67 @@
           readMoreLink.innerHTML = 'Read Less';
         }
       }
+
+      $(document).ready(function() {
+      $('.filter-checkbox').on('change', function() {
+        var jenis_dokumen = [];
+        var subjek = [];
+        var prodi = [];
+
+        $('input[name="jenis_dokumen"]:checked').each(function() {
+          jenis_dokumen.push($(this).val());
+        });
+
+        $('input[name="subjek"]:checked').each(function() {
+          subjek.push($(this).val());
+        });
+
+        $('input[name="prodi"]:checked').each(function() {
+          prodi.push($(this).val());
+        });
+
+        $.ajax({
+          url: '<?php echo base_url('tampilan/filter'); ?>',
+          type: 'POST',
+          data: {
+            jenis_dokumen: jenis_dokumen,
+            subjek: subjek,
+            prodi: prodi
+          },
+          success: function(data) {
+            var result = JSON.parse(data);
+            $('#result-container').empty();
+            $.each(result, function(index, item) {
+              var resultHtml = '<div class="row2 form-container">' +
+                '<div class="d-flex justify-content-between">' +
+                '<div>' +
+                '<div class="judul">' +
+                '<div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/'); ?>' + item.id + '" class="judul">' + item.judul + '</a><br></div>' +
+                '</div>' +
+                '<div class="divider"></div>' +
+                '<div class="write">' + item.penulis + '</div>' +
+                '<div class="write">' + item.jurusan + '</div>' +
+                '</div>' +
+                '<div class="tag tag-kuning">' + item.nama_dokumen + '</div>' + // Display nama_dokumen instead of id_dokumen
+                '</div>' +
+                '<div class="abstrak" id="abstrak-' + item.id + '">' +
+                '<strong class="fw-normal"></strong>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Abstrak:</strong>' +
+                '<p class="mb-2"></p>' +
+                '<p>' + item.abstrak + '</p>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Keyword(s):</strong>' +
+                '<p><i>' + item.keyword + '</i></p>' +
+                '</div>' +
+                '<a class="read-more" data-id="' + item.id + '" onclick="toggleReadMore(' + item.id + ')">Read More</a>' +
+                '</div>';
+              $('#result-container').append(resultHtml);
+            });
+          }
+        });
+      });
+    });
   </script>
   
 </body>
