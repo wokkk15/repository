@@ -59,7 +59,7 @@
           <div class="serach-box">
             <div><?php echo form_open('tampilan/search') ?></div>
             <input type="text" name="keyword" id="search-input" placeholder="Search Anything...">
-            <button type="sumbit" sytle="border: none; background:none; class="fa-solid fa-magnifying-glass"></button>
+            <button type="submit" style="border: none; background:none; " class="fa-solid fa-magnifying-glass"></button>
             <?php echo form_close() ?>
           </div>
         </div>
@@ -84,7 +84,7 @@
       </div>
       <?php foreach ($jenis_dokumen as $jns) : ?>
         <div class="form-group">
-          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" value="<?= $jns->id_dokumen ?>" />
+          <input type="checkbox" id="id-<?= $jns->id_dokumen ?>" name="jenis_dokumen" class="filter-checkbox" value="<?= $jns->id_dokumen ?>" />
           <label for="id-<?= $jns->id_dokumen ?>">
             <span class="checkbox">
               <span class="check"></span>
@@ -159,21 +159,149 @@
         </div>
     </div>
   </div>
-  <script>
-    function toggleReadMore(id) {
-      var abstrak = document.getElementById('abstrak-' + id);
-      var readMoreLink = abstrak.nextElementSibling;
+  
+  <script >
+    let dropdownBtn = document.getElementById("drop-text");
+    let list = document.getElementById("list");
+    let icon = document.getElementById("icon");
+    let span = document.getElementById("span");
+    let input = document.getElementById("search-input");
+    let listItems = document.querySelectorAll("dropdown-list-item");
 
-      if (abstrak.classList.contains('expanded')) {
-        abstrak.classList.remove('expanded');
-        readMoreLink.innerHTML = 'Read More';
-      } else {
-        abstrak.classList.add('expanded');
-        readMoreLink.innerHTML = 'Read Less';
+    // melihat dropdown list saat mengelik dropdown btn
+    dropdownBtn.onclick = function () {
+      if(list.classList.contains('show')){
+          icon.style.rotate = "-0deg";
+      }else{
+          icon.style.rotate = "-180deg";
+      }
+      list.classList.toggle("show");
+    };
+
+    //hide dropdown list saat kelik outside dropdown btn
+    window.onclick = function (e) {
+      if(
+          e.target.id !== "drop-text" &&
+          e.target.id !== "span" &&
+          e.target.id !== "icon" 
+      ) {
+          list.classList.remove("show");
+
+          icon.style.rotate = "-180deg";
+      }
+    };
+
+    for (item of listItems) {
+      item.onclick = function (e) {
+          span.innerText = e.target.innerText;
+          if (e.target.innerText == "All") {
+              input.placeholder = "Search Anything...";
+          }else{
+              input.placeholder = "Search in " + e.target.innerText + "...";
+          }
+      };
+    }
+
+    //membuat year
+    const yearSelect = document.getElementById("year");
+
+    function populaterYears() {
+      let year = new Date().getFullYear();
+      for(let i = 0; i < 101; i++){
+          const option = document.createElement("option");
+          option.textContent = year - i;
+          yearSelect.appendChild(option);
       }
     }
+
+    function checkFullText() {
+      console.log("full text");
+      window.href="detail.html";
+    }
+
+    populaterYears();
+
+    yearSelect.onchange = function() {
+      
+    }
+    </script>
+
+    <script>
+      function toggleReadMore(id) {
+        var abstrak = document.getElementById('abstrak-' + id);
+        var readMoreLink = abstrak.nextElementSibling;
+
+        if (abstrak.classList.contains('expanded')) {
+          abstrak.classList.remove('expanded');
+          readMoreLink.innerHTML = 'Read More';
+        } else {
+          abstrak.classList.add('expanded');
+          readMoreLink.innerHTML = 'Read Less';
+        }
+      }
+
+      $(document).ready(function() {
+      $('.filter-checkbox').on('change', function() {
+        var jenis_dokumen = [];
+        var subjek = [];
+        var prodi = [];
+
+        $('input[name="jenis_dokumen"]:checked').each(function() {
+          jenis_dokumen.push($(this).val());
+        });
+
+        $('input[name="subjek"]:checked').each(function() {
+          subjek.push($(this).val());
+        });
+
+        $('input[name="prodi"]:checked').each(function() {
+          prodi.push($(this).val());
+        });
+
+        $.ajax({
+          url: '<?php echo base_url('tampilan/filter'); ?>',
+          type: 'POST',
+          data: {
+            jenis_dokumen: jenis_dokumen,
+            subjek: subjek,
+            prodi: prodi
+          },
+          success: function(data) {
+            var result = JSON.parse(data);
+            $('#result-container').empty();
+            $.each(result, function(index, item) {
+              var resultHtml = '<div class="row2 form-container">' +
+                '<div class="d-flex justify-content-between">' +
+                '<div>' +
+                '<div class="judul">' +
+                '<div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/'); ?>' + item.id + '" class="judul">' + item.judul + '</a><br></div>' +
+                '</div>' +
+                '<div class="divider"></div>' +
+                '<div class="write">' + item.penulis + '</div>' +
+                '<div class="write">' + item.jurusan + '</div>' +
+                '</div>' +
+                '<div class="tag tag-kuning">' + item.nama_dokumen + '</div>' + // Display nama_dokumen instead of id_dokumen
+                '</div>' +
+                '<div class="abstrak" id="abstrak-' + item.id + '">' +
+                '<strong class="fw-normal"></strong>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Abstrak:</strong>' +
+                '<p class="mb-2"></p>' +
+                '<p>' + item.abstrak + '</p>' +
+                '<p class="mb-2"></p>' +
+                '<strong class="fw-normal">Keyword(s):</strong>' +
+                '<p><i>' + item.keyword + '</i></p>' +
+                '</div>' +
+                '<a class="read-more" data-id="' + item.id + '" onclick="toggleReadMore(' + item.id + ')">Read More</a>' +
+                '</div>';
+              $('#result-container').append(resultHtml);
+            });
+          }
+        });
+      });
+    });
   </script>
-  <script src="<?php echo base_url() ?>assets/scripts.js"></script>
+  
 </body>
 
 </html>

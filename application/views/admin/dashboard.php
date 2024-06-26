@@ -5,7 +5,7 @@
                     <div class="mb-3">
                         <h4>Admin Dashboard</h4>
                     </div>
-                    <div class="row">
+                    <div class="row"> 
                         <div class="col-12 col-md-6 d-flex">
                             <div class="card flex-fill border-0 illustration">
                                 <div class="card-body p-0 d-flex flex-fill">

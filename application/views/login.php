@@ -18,29 +18,6 @@
           <a href="<?php echo base_url('tampilan')?>" class="logoname" style="text-decoration:none; color:#000;">Repository ITH</a>
           </div>
 
-          <div class="search">
-            <div class="search-bar">
-              <div class="dropdown">
-                <div id="drop-text" class="dropdown-text">
-                  <span id="span">All</span>
-                  <i id="icon" class="fa-solid fa-chevron-down"></i>
-                </div>
-                <ul id="list" class="dropdown-list">
-                  <li class="dropdown-list-item">Judul</li>
-                  <li class="dropdown-list-item">Penulis</li>
-                  <li class="dropdown-list-item">Nim Penulis</li>
-                  <li class="dropdown-list-item">Pembimbing</li>
-                  <li class="dropdown-list-item">Penguji</li>
-                </ul>
-              </div>
-      
-              <div class="serach-box">
-                <input type="text" id="search-input" placeholder="Search Anything...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-            </div>
-          </div>
-
           <ul class="navigation">
             <li><a href="<?php echo base_url('login')?>" class="active">Login</a></li>
         </ul>
