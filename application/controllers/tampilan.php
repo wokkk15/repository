@@ -30,6 +30,7 @@ class Tampilan extends CI_Controller
         $this->load->view('tampilan', $data);
     }
 
+
     public function filter()
     {
         $jenis_dokumen = $this->input->post('jenis_dokumen');

@@ -9,11 +9,15 @@ class Model_table extends CI_Model
 
     public function get_keyword($keyword)
     {
+        $this->db->select('tabel.*, jenis_dokumen.nama_dokumen');
+        $this->db->from('tabel');
+        $this->db->join('jenis_dokumen', 'tabel.jenis = jenis_dokumen.id_dokumen');
         $this->db->like('judul', $keyword);
         $this->db->or_like('penulis', $keyword);
-        // Add more fields to search if needed
-        return $this->db->get('tabel')->result();
+
+        return $this->db->get()->result();
     }
+
 
     public function get_jenis_dokumen()
     {

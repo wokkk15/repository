@@ -136,13 +136,11 @@
               <div class="judul">
                 <div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/' . $tbl->id) ?>" class="judul"><?php echo $tbl->judul; ?></a><br></div>
               </div>
-              <div class=" divider"></div>
+              <div class="divider"></div>
               <div class="write"><?php echo $tbl->penulis; ?></div>
               <div class="write"><?php echo $tbl->jurusan; ?></div>
             </div>
-
             <div class="tag tag-kuning"><?php echo $tbl->nama_dokumen; ?></div>
-
           </div>
           <div class="abstrak" id="abstrak-<?php echo $tbl->id; ?>">
             <strong class="fw-normal"></strong>
