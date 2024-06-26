@@ -26,17 +26,23 @@ class Model_table extends CI_Model
 
     public function filter_data($jenis_dokumen, $subjek, $prodi)
     {
-        if ($jenis_dokumen) {
-            $this->db->where_in('jenis', $jenis_dokumen);
+        $this->db->select('tabel.*, jenis_dokumen.nama_dokumen');
+        $this->db->from('tabel');
+        $this->db->join('jenis_dokumen', 'tabel.jenis = jenis_dokumen.id_dokumen');
+
+        if (!empty($jenis_dokumen)) {
+            $this->db->where_in('tabel.jenis', $jenis_dokumen);
         }
-        if ($subjek) {
-            $this->db->where_in('subjek', $subjek);
+        if (!empty($subjek)) {
+            $this->db->where_in('tabel.subjek', $subjek);
         }
-        if ($prodi) {
-            $this->db->where_in('prodi', $prodi);
+        if (!empty($prodi)) {
+            $this->db->where_in('tabel.prodi', $prodi);
         }
-        return $this->db->get('tabel')->result();
+
+        return $this->db->get()->result();
     }
+
 
     // New function to join tabel and jenis_dokumen
     public function get_tabel_with_nama_dokumen()

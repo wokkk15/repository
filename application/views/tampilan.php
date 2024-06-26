@@ -208,11 +208,11 @@
                 '<div class="judul">' +
                 '<div><a style="text-decoration:none" href="<?php echo base_url('detail/tabelid/'); ?>' + item.id + '" class="judul">' + item.judul + '</a><br></div>' +
                 '</div>' +
-                '<div class=" divider"></div>' +
+                '<div class="divider"></div>' +
                 '<div class="write">' + item.penulis + '</div>' +
                 '<div class="write">' + item.jurusan + '</div>' +
                 '</div>' +
-                '<div class="tag tag-kuning">' + item.jenis + '</div>' +
+                '<div class="tag tag-kuning">' + item.nama_dokumen + '</div>' + // Display nama_dokumen instead of id_dokumen
                 '</div>' +
                 '<div class="abstrak" id="abstrak-' + item.id + '">' +
                 '<strong class="fw-normal"></strong>' +
